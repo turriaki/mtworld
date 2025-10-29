@@ -71,4 +71,88 @@ export default function MateriaPage() {
           borderRadius: 14,
           padding: 18
         }}>
-          <div style={{ fontSize: 18, fontWeight:
+          <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>
+            {current.Question || current.Front}
+          </div>
+
+          {["A", "B", "C", "D"].map((opt) =>
+            current[opt] ? (
+              <button
+                key={opt}
+                onClick={() => setShowAnswer(true)}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  textAlign: "left",
+                  marginTop: 10,
+                  padding: 12,
+                  background: "#0c0c0c",
+                  color: "white",
+                  border: "1px solid #2a2a2a",
+                  borderRadius: 10,
+                  cursor: "pointer"
+                }}
+              >
+                <span style={{ opacity: 0.6, marginRight: 8 }}>{opt}.</span> {current[opt]}
+              </button>
+            ) : null
+          )}
+
+          {showAnswer && (
+            <div
+              style={{
+                marginTop: 16,
+                background: "#161b22",
+                color: "white",
+                border: "1px solid #2a2a2a",
+                borderRadius: 12,
+                padding: 14,
+                lineHeight: 1.5
+              }}
+            >
+              <div style={{ fontWeight: 800, marginBottom: 6 }}>
+                Respuesta correcta: {current.Answer || current.Back || "—"}
+              </div>
+              <div style={{ whiteSpace: "pre-wrap" }}>
+                {current.Explanation || "Sin explicación."}
+              </div>
+
+              <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                <button
+                  onClick={() => {
+                    setShowAnswer(false);
+                    setIndex((prev) => (prev + 1 < questions.length ? prev + 1 : 0));
+                  }}
+                  style={{
+                    padding: "10px 14px",
+                    background: "#0a84ff",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 8,
+                    cursor: "pointer"
+                  }}
+                >
+                  Siguiente
+                </button>
+
+                <button
+                  onClick={() => setShowAnswer(false)}
+                  style={{
+                    padding: "10px 14px",
+                    background: "#2a2a2a",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 8,
+                    cursor: "pointer"
+                  }}
+                >
+                  Ocultar respuesta
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
