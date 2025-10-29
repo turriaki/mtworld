@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div style={{ minHeight: "100vh", background: "#0b0b0b", color: "white", padding: 32 }}>
       <h1 style={{ fontSize: 40, fontWeight: 800, letterSpacing: 1 }}>M.T WORLD</h1>
-      <h5 style={{ fontSize: 40, fontWeight: 800, letterSpacing: 1 }}>Tu herramienta para entrar a la residencia.</h5>
+      <h5 style={{ fontSize: 40, fontWeight: 800, letterSpacing: 1 }}>Memento mori - Estudia y logra eso que tanto deseas.</h5>
 
       <p style={{ opacity: 0.8, marginTop: 8 }}>Elegí una materia para practicar.</p>
 
