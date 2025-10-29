@@ -18,15 +18,21 @@ export default function MateriaPage() {
   const [index, setIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
 
-  const handleFile = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    Papa.parse(file, {
+  useEffect(() => {
+    const materia = params.slug; // 'pediatria', por ejemplo
+    const csvPath = `/csv/${materia}.csv`;
+  
+    Papa.parse(csvPath, {
+      download: true,
       header: true,
       skipEmptyLines: true,
-      complete: (results) => setQuestions(results.data ?? []),
+      complete: (results) => {
+        setQuestions(results.data ?? []);
+      },
+      error: (err) => console.error("Error al cargar CSV:", err),
     });
-  };
+  }, [params.slug]);
+  
 
   const current = questions[index];
 
